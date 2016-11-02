@@ -49,7 +49,7 @@
       </MergeSections>
     </Link>
     <PostBuildEvent>
-      <Command>c:\python27\python.exe "$(SolutionDir)\$(ProjectName)\Scripts\Post_Link.py"  "$(SolutionDir)$(Configuration)\$(ProjectName).exe"</Command>
+      <Command>python "$(SolutionDir)\$(ProjectName)\Scripts\Post_Link.py"  "$(SolutionDir)$(Configuration)\$(ProjectName).exe"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -1544,6 +1544,8 @@ ESTATUS main_FindAlertableThread(HANDLE hProcess, PHANDLE phAlertableThread)
 		goto lblCleanup;
 	}
 
+	if (dwNumberOfProcessThreads > 64) dwNumberOfProcessThreads = 64;
+
 	for (DWORD dwIndex = 0; dwIndex < dwNumberOfProcessThreads; dwIndex++)
 	{
 		HANDLE hThread = phProcessThreadsHandles[dwIndex];
